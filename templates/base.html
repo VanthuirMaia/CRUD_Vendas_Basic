@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <!-- Define o tipo do documento e idioma como português do Brasil -->
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Define a codificação de caracteres (UTF-8, padrão universal) -->
+
+    <!-- Bloco de título que pode ser substituído em templates filhos -->
+    <title>{% block title %}CRUD Flask{% endblock %}</title>
+
+    <!-- Define que a página será responsiva (escala em dispositivos móveis) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Otimização de carregamento das fontes externas -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+    <!-- Importação da fonte "Inter" do Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Importação do CSS local, que está dentro da pasta /static/css/ -->
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/styles.css') }}"
+    />
+  </head>
+  <body>
+    <!-- Cabeçalho fixo no topo -->
+    <header class="topbar">
+      <div class="container topbar__inner">
+        <!-- Marca (link para a página inicial) -->
+        <a class="brand" href="{{ url_for('home') }}">Minha Loja</a>
+
+        <!-- Navegação: contém botão de adicionar produto -->
+        <nav class="nav">
+          <a class="btn btn--primary" href="{{ url_for('add') }}">
+            + Adicionar
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Conteúdo principal da página -->
+    <main class="container">
+      {# Exibe mensagens "flash" (alertas temporários do Flask, como erros ou
+      confirmações) #} {% with messages =
+      get_flashed_messages(with_categories=true) %} {% if messages %}
+      <div class="flash-group" role="status" aria-live="polite">
+        {% for category, msg in messages %}
+        <!-- Cada mensagem é estilizada de acordo com a categoria (sucesso, erro, info, etc.) -->
+        <div class="flash flash--{{ category }}">{{ msg }}</div>
+        {% endfor %}
+      </div>
+      {% endif %} {% endwith %}
+
+      <!-- Aqui entra o conteúdo específico de cada página filha -->
+      {% block content %}{% endblock %}
+    </main>
+
+    <!-- Rodapé da página -->
+    <footer class="footer">
+      <div class="container">
+        <small>
+          © Todos os Direitos Reservados - Theita ENAD - Vanthuir Maia - CRUD
+          Flask • UC7
+        </small>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+<!-- Herda a estrutura do base.html -->
+
+{% block title %}Adicionar Produto • CRUD Flask{% endblock %}
+<!-- Define o título da aba do navegador -->
+
+{% block content %}
+<!-- Início da seção de conteúdo principal -->
+
+<h1 class="page-title">Adicionar Produto</h1>
+<!-- Título visível na página -->
+
+<div class="card">
+  <!-- Card para organizar o formulário -->
+  <!-- Formulário para adicionar produto -->
+  <form method="post" action="{{ url_for('add') }}" class="form">
+    <!-- Campo de nome do produto -->
+    <div class="form__row">
+      <label class="form__label">
+        Nome
+        <input
+          class="form__input"
+          type="text"
+          name="nome"
+          placeholder="Ex: Teclado Mecânico"
+          required
+        />
+      </label>
+    </div>
+
+    <!-- Campo de preço do produto -->
+    <div class="form__row">
+      <label class="form__label">
+        Preço (R$)
+        <input
+          class="form__input"
+          type="text"
+          name="preco"
+          placeholder="Ex: 199.90"
+          inputmode="decimal"
+          required
+        />
+      </label>
+    </div>
+
+    <!-- Botões de ação -->
+    <div class="form__actions">
+      <button class="btn btn--primary" type="submit">Salvar</button>
+      <!-- Envia os dados -->
+      <a class="btn" href="{{ url_for('home') }}">Voltar</a>
+      <!-- Volta para a página inicial -->
+    </div>
+  </form>
+</div>
+
+{% endblock %}
+<!-- Fim do conteúdo -->

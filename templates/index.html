@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+<!-- Herda a estrutura principal do base.html -->
+
+{% block title %}Produtos • CRUD Flask{% endblock %}
+<!-- Define o título da aba do navegador -->
+
+{% block content %}
+<!-- Início da área de conteúdo -->
+
+<h1 class="page-title">Produtos</h1>
+<!-- Título visível da página -->
+
+<div class="card">
+  <!-- Card que envolve a tabela -->
+  <div class="table-responsive">
+    <!-- Responsividade para telas menores -->
+    <table class="table">
+      <!-- Início da tabela de produtos -->
+      <thead>
+        <tr>
+          <th>#</th>
+          <!-- Coluna do ID -->
+          <th>Nome</th>
+          <!-- Coluna do nome do produto -->
+          <th class="text-right">Preço (R$)</th>
+          <!-- Coluna do preço -->
+        </tr>
+      </thead>
+      <tbody>
+        {% for p in produtos %}
+        <!-- Loop que percorre a lista de produtos -->
+        <tr>
+          <td>{{ p["id"] }}</td>
+          <!-- Mostra o ID do produto -->
+          <td>{{ p["nome"] }}</td>
+          <!-- Mostra o nome do produto -->
+          <td class="text-right">{{ '%.2f'|format((p['preco']|float)) }}</td>
+          <!-- Formata o preço com 2 casas decimais -->
+        </tr>
+        {% else %}
+        <!-- Caso não haja produtos cadastrados -->
+        <tr>
+          <td colspan="3" class="muted">Nenhum produto cadastrado ainda.</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    <!-- Fim da tabela -->
+  </div>
+</div>
+
+{% endblock %}
+<!-- Fim do conteúdo -->
